@@ -1,0 +1,31 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    color: #333333;
+    background: url("../images/background.jpg");
+}
+
+img {
+    width: 70px;
+}
+
+.container {
+    margin-top: 10px;
+ /*   margin-bottom: 10px; */
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    background-color: #C0C0C0;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid;
+    border-color: #333333;
+    text-align: center;
+}
+
+.row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.rules {
+    font-size: 15px;
+}
