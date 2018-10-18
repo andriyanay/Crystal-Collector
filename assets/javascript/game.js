@@ -80,12 +80,12 @@ var blueButton = $("#blue");
         });
 
             
-        var numberOprtions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,]
-        $(".crystalbutton").attr("data-crystalvalue", numberOptions[i]);
+        var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,]
+        $(".crystalbutton").attr("data-crystalvalue", numberOptions);
 
         $(".crystalbutton").click(function() {
             $("#yournumber").text(randomNumber)
-        }
+        });
 
 
 
