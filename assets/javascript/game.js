@@ -30,46 +30,56 @@ var targetNumber = "";
 //Values for each button and array for 4 numbers 
 
 var crystalButtonValue = [];
-var blueButtonValue = "";
 var pinkButtonValue = "";
-var purpleButtonValue = "";
+var blueButtonValue = "";
 var whiteButtonValue = "";
+var purpleButtonValue = "";
 
+while (crystalButtonValue.length < 4) {
+    var rand = Math.floor(Math.random() * 19) + 1;
 
-var scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-   
-function assignNumber() {
-  scores.sort(function(a, b){return 0.5 - Math.random()});
+    if (crystalButtonValue.indexOf(rand) === -1) {
+        crystalButtonValue.push(rand)
+    } else {
+        continue
+    }
 }
-assignNumber();
+
+// var scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+   
+// function assignNumber() {
+//   scores.sort(function(a, b){return 0.5 - Math.random()});
+// }
+// assignNumber();
 
 //Create an array wuth 4 numbers to be selected by crystal buttons 
-var crystalButtonValue = [];
-  for (var i = 0; i < 4; i++) {
-     crystalButtonValue.push(scores[i]);
-  console.log(scores[i]);
- 
+// var crystalButtonValue = [];
+//   for (var i = 0; i < 4; i++) {
+//      crystalButtonValue.push(scores[i]);
+//  // console.log(scores[i]);
+//   };
 // One way - assigns the same number to each button
- $(".crystalbutton").attr("data-crystalvalue", crystalButtonValue[i]);
- };
+// $(".crystalbutton").attr("data-crystalvalue", crystalButtonValue[i]);
+// };
 
  // Another attempt. Here I get a mistake NAN
- // pinkButtonValue = crystalButtonValue [0];
- // blueButtonValue = crystalButtonValue [1];
- // whiteButtonValue = crystalButtonValue [2];
- // purpleButtonValue = crystalButtonValue [3];
+  pinkButtonValue = crystalButtonValue [0];
+  blueButtonValue = crystalButtonValue [1];
+  whiteButtonValue = crystalButtonValue [2];
+  purpleButtonValue = crystalButtonValue [3];
 
-// $("#pink").attr("data", pinkButtonValue);
-// console.log(pinkButtonValue);
-// $("#purple").attr("data", purpleButtonValue);
-// console.log(purpleButtonValue);
-// $(blueButton).attr("data", blueButtonValue);
-// console.log(blueButtonValue);
-// $(whiteButton).attr("data", whiteButtonValue);
-// console.log(whiteButtonValue);
+$("#pink").attr("data", pinkButtonValue);
+console.log(pinkButtonValue);
+$("#blue").attr("data", blueButtonValue);
+console.log(blueButtonValue);
+$("#white").attr("data", whiteButtonValue);
+console.log(whiteButtonValue);
+$("#purple").attr("data", purpleButtonValue);
+console.log(purpleButtonValue);
+
 
 $(".crystalbutton").on("click", function() {
-    var crystalValue = ($(this).attr("data-crystalvalue"));
+    var crystalValue = ($(this).attr("data"));
     crystalValue = parseInt(crystalValue);
 
    playerNumber += crystalValue;
@@ -87,8 +97,4 @@ $(".crystalbutton").on("click", function() {
         alert("you lose");
         $("#lose").text(losses);
     }
-
-
 });
-
-
