@@ -6,29 +6,18 @@ var losses = 0;
 var playerNumber = 0;
 
 // The random number to be selected by the computer and displayed on the screen
-var targetNumber = "";
+var targetNumber;
 
+// Function to start the game
+function startGame() { 
+    playerNumber = 0;
+    $("#yournumber").text(playerNumber)
     for (var i = 19; i <= 120; i++) {
         targetNumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
         $("#randomnumber").text(targetNumber);
     }
 
-// Values for each button and array for 4 numbers 
-
-// var crystals = [$("#pink"), $("#blue"), $("#purple"), $("#white"),];
-
-// function resetCrystals () {
-//    for (var i = 0; i < crystals.length; i++) {
-//        var crystal = $(".crystalbutton");
-    
-//        crystal.attr("value", (Math.floor(Math.random() * 12) + 1));
-//        console.log(crystal);
-//    }
-// }
-// resetCrystals();
-
 //Values for each button and array for 4 numbers 
-
 var crystalButtonValue = [];
 var pinkButtonValue = "";
 var blueButtonValue = "";
@@ -36,65 +25,48 @@ var whiteButtonValue = "";
 var purpleButtonValue = "";
 
 while (crystalButtonValue.length < 4) {
-    var rand = Math.floor(Math.random() * 19) + 1;
+    var random = Math.floor(Math.random() * 19) + 1;
 
-    if (crystalButtonValue.indexOf(rand) === -1) {
-        crystalButtonValue.push(rand)
+    if (crystalButtonValue.indexOf(random) === -1) {
+        crystalButtonValue.push(random)
     } else {
         continue
     }
 }
+    // Set button values 
+    pinkButtonValue = crystalButtonValue[0];
+    blueButtonValue = crystalButtonValue[1];
+    whiteButtonValue = crystalButtonValue[2];
+    purpleButtonValue = crystalButtonValue[3];
 
-// var scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-   
-// function assignNumber() {
-//   scores.sort(function(a, b){return 0.5 - Math.random()});
-// }
-// assignNumber();
+    $("#pink").attr("data", pinkButtonValue);
+    $("#blue").attr("data", blueButtonValue);
+    $("#white").attr("data", whiteButtonValue);
+    $("#purple").attr("data", purpleButtonValue);
+};
 
-//Create an array wuth 4 numbers to be selected by crystal buttons 
-// var crystalButtonValue = [];
-//   for (var i = 0; i < 4; i++) {
-//      crystalButtonValue.push(scores[i]);
-//  // console.log(scores[i]);
-//   };
-// One way - assigns the same number to each button
-// $(".crystalbutton").attr("data-crystalvalue", crystalButtonValue[i]);
-// };
+startGame();
 
- // Another attempt. Here I get a mistake NAN
-  pinkButtonValue = crystalButtonValue [0];
-  blueButtonValue = crystalButtonValue [1];
-  whiteButtonValue = crystalButtonValue [2];
-  purpleButtonValue = crystalButtonValue [3];
-
-$("#pink").attr("data", pinkButtonValue);
-console.log(pinkButtonValue);
-$("#blue").attr("data", blueButtonValue);
-console.log(blueButtonValue);
-$("#white").attr("data", whiteButtonValue);
-console.log(whiteButtonValue);
-$("#purple").attr("data", purpleButtonValue);
-console.log(purpleButtonValue);
-
-
+// Screen updates
 $(".crystalbutton").on("click", function() {
+    $(".wonlost").text("");
     var crystalValue = ($(this).attr("data"));
     crystalValue = parseInt(crystalValue);
-
-   playerNumber += crystalValue;
+    playerNumber += crystalValue;
 
     $("#yournumber").text(playerNumber);
 
     if (playerNumber === targetNumber) {
         wins++;
-        alert("you win!");
+        $(".wonlost").text("Congrats! Try again!");
         $("#win").text(wins);
+        startGame();
     }
 
     else if (playerNumber > targetNumber) {
         losses++;
-        alert("you lose");
+        $(".wonlost").text("Oh no! Try again!");
         $("#lose").text(losses);
+        startGame();
     }
 });
